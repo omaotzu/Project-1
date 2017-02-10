@@ -21,7 +21,7 @@ $(() => {
 
   function qanda () {
     for (let i = 0; i<multipleanswers.length; i++) {
-      
+
     }
   }
 
@@ -51,6 +51,7 @@ $(() => {
     $name.hide();
     $button.hide();
   }
+
   function startRoundTimer(){
     timerId = setInterval(() => {
       roundTimeRemaining--;
@@ -60,6 +61,7 @@ $(() => {
       }
     }, 1000);
   }
+
   function startQuestionTimer(){
     timerId = setInterval(() => {
       answerTimeRemaining--;
@@ -68,7 +70,6 @@ $(() => {
         clearInterval(timerId);
       }
     }, 1000);
-    startQuestionTimer();
   }
 
   $button.on('click', startRoundTimer);

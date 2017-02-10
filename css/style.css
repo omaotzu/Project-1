@@ -1,0 +1,79 @@
+body{
+  background-color: purple;
+}
+
+header{
+  background-color: :yellow;
+  color: white;
+  text-align: center;
+}
+
+main{
+  background-color: green;
+  width: 960px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 50px;
+  position: absolute;;
+}
+
+.aside {
+  background-color: white;
+  float: left;
+  height: 600px;
+  width: 200px;
+  margin: 20px;
+  position: fixed;
+}
+
+footer{
+  background-color: white;
+  color: red;
+  text-align: center;
+}
+
+.instructions {
+  background-color: white;
+  width:50%;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+
+.questions{
+  background-color: black;
+  height: 400px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 50px;
+  color: white;
+}
+
+.answerquestions{
+  background-color: white;
+  border: 5px solid blue;
+  width: 500px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+
+.audioscore{
+  background-color: white;
+  width: 200px;
+  height: 40px;
+  margin: 20px auto;
+  border: 2px solid yellow;
+  text-align: left;
+  border-radius: 50px;
+  padding: 15px;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }

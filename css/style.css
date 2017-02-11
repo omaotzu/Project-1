@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body{
   background-color: purple;
 }
@@ -18,7 +22,7 @@ main{
 
 aside {
   display: block;
-  
+
 }
 footer{
   background-color: white;
@@ -64,25 +68,46 @@ footer{
 }
 
 .clearfix:after {
-     visibility: hidden;
-     display: block;
-     font-size: 0;
-     content: " ";
-     clear: both;
-     height: 0;
-     }
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
 
 .timer {
- height: 70px;
- width: 70px;
- border: 5px solid dodgerblue;
- position: relative;
- border-radius: 50%;
- font-size: 36px;
- font-weight: bold;
- text-align: center;
- line-height: 70px;
- color: dodgerblue;
- margin: 0 auto;
- float: right;
+  height: 70px;
+  width: 70px;
+  border: 5px solid red;
+  position: relative;
+  border-radius: 50%;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 70px;
+  color: white;
+  margin: 0 auto;
+  float: right;
+  background-color: black;
+}
+
+.answerchoices {
+  color: orange;
+  background-color: black;
+  border: 2px solid orange;
+  border-radius: 5px;
+  margin: 30px 40px;
+  height: 30px;
+  display: block;
+  padding-top: 10px;
+  width: 80%;
+}
+
+.multiplechoice li:first-child{
+  margin-top: 40px;
+}
+
+button:focus {
+  outline: 0;
 }

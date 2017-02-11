@@ -6,8 +6,9 @@ $(() => {
   const $roundtimer = $('.rounds');
   const $questiontimer = $('.tunes');
   const $button = $('button');
-
-  // const answers = ['a','b','c','d','e','f','g','h','i','j','k'];
+  const $answers = $('ul');
+  const $buttons = $('button');
+  const userchoice = [];
 
   const multipleanswers =
     [{ audio: 'a',
@@ -18,31 +19,77 @@ $(() => {
       options: ['i','b','c','g']}];
 
 
+  console.log('before!!');
+  console.log(multipleanswers[0].audio);
+  console.log(multipleanswers[0].options);
 
-  function qanda () {
-    for (let i = 0; i<multipleanswers.length; i++) {
+  function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+  shuffle(multipleanswers);
+  console.log('after!!');
+  console.log(multipleanswers[0].audio);
+  console.log(multipleanswers[0].options);
 
+
+  console.log(multipleanswers[0].options.length);
+
+
+
+
+
+  function createOptions () {
+    const len= (multipleanswers[0].options);
+    for (let j=0; j<len.length; j++) {
+      const answerboxes = document.createElement('button');
+      answerboxes.className = 'answerchoices';
+      answerboxes.innerHTML = (len[j]);
+      $answers.append(answerboxes);
+      console.log(answerboxes);
     }
   }
 
-  const randomaudio = multipleanswers[Math.floor(Math.random()*multipleanswers.length)].audio;
-  const randomoptions = multipleanswers[Math.floor(Math.random()*multipleanswers.length)].options;
-
-  console.log(randomaudio);
-  console.log(randomoptions);
 
 
-
-  // function noDuplicates () {
-  //   if ($answers === $randomAnswer1) {
-  //     console.log($answers);
-  // //     console.log($answers);
-  //
+  // function checkAnswer(){
+  //   if (timeRemaining > 0) {
+  //     const huw = parseInt($answer.val());
+  //     if (huw === (value1 + value2)) {
+  //       startingscore++;
+  //       $score.text(startingscore);
+  //       $feedback.text('Correct!');
+  //       $answer.val('');
+  //     } else {
+  //       if (startingscore >=1) {
+  //         startingscore--;
+  //         $score.text(startingscore);
+  //         $feedback.text('Incorrect!');
+  //         $answer.val('');
+  //       }
+  //     }
+  //     newNumbers();
   //   }
   // }
+
+  // }
+  // function displayAnswers() {
+
+  // }
+  // displayAnswers();
+
+
   let roundTimeRemaining = 90;
+  let roundTimerId = null;
   let answerTimeRemaining =15;
-  let timerId = null;
+  let answerTimerId = null;
 
 
 
@@ -53,27 +100,28 @@ $(() => {
   }
 
   function startRoundTimer(){
-    timerId = setInterval(() => {
+    roundTimerId = setInterval(() => {
       roundTimeRemaining--;
       $roundtimer.text(roundTimeRemaining);
       if (roundTimeRemaining <=0) {
-        clearInterval(timerId);
+        clearInterval(roundTimerId);
       }
     }, 1000);
   }
 
   function startQuestionTimer(){
-    timerId = setInterval(() => {
+    answerTimerId = setInterval(() => {
       answerTimeRemaining--;
       $questiontimer.text(answerTimeRemaining);
       if (answerTimeRemaining <=0) {
-        clearInterval(timerId);
+        clearInterval(answerTimerId);
       }
     }, 1000);
   }
 
+  // $li.on('click', nextQuestion);
   $button.on('click', startRoundTimer);
   $button.on('click', startQuestionTimer);
   $button.on('click', hideStuff);
-
+  $button.on('click', createOptions);
 });

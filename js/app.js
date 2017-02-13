@@ -1,15 +1,27 @@
 $(() => {
-  // const $instructions = $('.instructions');
 
-  const $questions = $('.questions');
+// -------------- Constants and variables ------------------------------
+
+  // const $instructions = $('.instructions');
+  // const $questions = $('.questions');
   const $name = $('.name');
   const $roundtimer = $('.rounds');
   const $questiontimer = $('.tunes');
-  const $button = $('button');
+  const $go = $('button');
   const $answers = $('ul');
-  const $buttons = $('button');
-  const userchoice = [];
+  const $options = $('.choices');
+  const $score = $('.score');
+  const $feedback =$('.feedback');
 
+  let $li = $('li');
+  let startingscore = 0;
+  let roundTimeRemaining = 90;
+  let roundTimerId = null;
+  let answerTimeRemaining =15;
+  let answerTimerId = null;
+
+//-------------Hardcoded array--object----- array ----------------------------
+  const tunes = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   const multipleanswers =
     [{ audio: 'a',
       options: ['b', 'a', 'c', 'g']},
@@ -19,9 +31,12 @@ $(() => {
       options: ['i','b','c','g']}];
 
 
+
   console.log('before!!');
   console.log(multipleanswers[0].audio);
   console.log(multipleanswers[0].options);
+
+
 
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -39,66 +54,47 @@ $(() => {
   console.log(multipleanswers[0].audio);
   console.log(multipleanswers[0].options);
 
-
+  console.log($options.length);
   console.log(multipleanswers[0].options.length);
 
-
-
-
-
-  function createOptions () {
+//----------Showing answers after first click
+  function updateOptions () {
     const len= (multipleanswers[0].options);
-    for (let j=0; j<len.length; j++) {
-      const answerboxes = document.createElement('button');
-      answerboxes.className = 'answerchoices';
-      answerboxes.innerHTML = (len[j]);
-      $answers.append(answerboxes);
-      console.log(answerboxes);
+    $answers.show();
+    for (let i=0; i<$options.length; i++) {
+      $options[i].textContent = len[i];
     }
   }
 
+// -------------- Adding score/ feedback
+  function checkAnswer (e) {
+    $li = $(e.currentTarget);
+    const chosenanswer = ($li.html());
+    const correctanswer= (multipleanswers[0].audio).toString();
+    if (correctanswer === chosenanswer) {
+      startingscore = startingscore+10;
+      $score.text('Your score is:  ' + startingscore);
+      $feedback.text('Correct!');
+    } else {
+      $feedback.text('Incorrect!');
+      if (startingscore >=1) {
+        startingscore = startingscore-10;
+        $score.text('Your score is:  ' + startingscore);
 
-
-  // function checkAnswer(){
-  //   if (timeRemaining > 0) {
-  //     const huw = parseInt($answer.val());
-  //     if (huw === (value1 + value2)) {
-  //       startingscore++;
-  //       $score.text(startingscore);
-  //       $feedback.text('Correct!');
-  //       $answer.val('');
-  //     } else {
-  //       if (startingscore >=1) {
-  //         startingscore--;
-  //         $score.text(startingscore);
-  //         $feedback.text('Incorrect!');
-  //         $answer.val('');
-  //       }
-  //     }
-  //     newNumbers();
-  //   }
-  // }
-
-  // }
-  // function displayAnswers() {
-
-  // }
-  // displayAnswers();
-
-
-  let roundTimeRemaining = 90;
-  let roundTimerId = null;
-  let answerTimeRemaining =15;
-  let answerTimerId = null;
-
-
-
+      }
+    }
+    $options.text('');
+    multipleanswers.splice(0,1);
+    updateOptions();
+    console.log(multipleanswers[0].audio);
+    console.log(multipleanswers[0].options);
+  }
 
   function hideStuff() {
     $name.hide();
-    $button.hide();
+    $go.hide();
   }
-
+//-------------Clock stuff ----------------------------
   function startRoundTimer(){
     roundTimerId = setInterval(() => {
       roundTimeRemaining--;
@@ -119,9 +115,13 @@ $(() => {
     }, 1000);
   }
 
-  // $li.on('click', nextQuestion);
-  $button.on('click', startRoundTimer);
-  $button.on('click', startQuestionTimer);
-  $button.on('click', hideStuff);
-  $button.on('click', createOptions);
+
+//////---------------- JQueeerrryyyyyyyiiinnnggg
+
+  $answers.hide();
+  $options.on('click', checkAnswer);
+  $go.on('click', startRoundTimer);
+  $go.on('click', startQuestionTimer);
+  $go.on('click', hideStuff);
+  $go.on('click', updateOptions);
 });

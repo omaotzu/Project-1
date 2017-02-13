@@ -12,6 +12,7 @@ $(() => {
   const $options = $('.choices');
   const $score = $('.score');
   const $feedback =$('.feedback');
+  const $visualscore = $('.visualscore');
 
   let $li = $('li');
   let startingscore = 0;
@@ -20,30 +21,33 @@ $(() => {
   let answerTimeRemaining =15;
   let answerTimerId = null;
 
-//-------------Hardcoded array--object----- array ----------------------------
+//-------------Not!!!! Hardcoded array--object----- array ----------------------------
   const tunes = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w', 'x', 'y', 'z'];
+
 
   shuffle(tunes);
 
-
-
-
-
   const multipleanswers = [];
-    // [{audio: tunes[0],
-    //   options: [correctanswer, randomanswer1, randomanswer2, randomanswer3]},
-    // { audio: 'b',
-    //   options: ['f', 'j','h','b']},
-    // { audio: 'c',
-    //   options: ['i','b','c','g']}];
-
 
   for (let i=0; i<tunes.length; i++) {
-    const correctanswer = tunes[i];
-    const randomanswer1 = tunes[Math.floor(Math.random()*tunes.length)];
-    const randomanswer2 = tunes[Math.floor(Math.random()*tunes.length)];
-    const randomanswer3 = tunes[Math.floor(Math.random()*tunes.length)];
-    const randomrandom = [correctanswer, randomanswer1, randomanswer2, randomanswer3];
+    const randomrandom = [];
+    const huw = tunes[i];
+    let random1 = tunes[Math.ceil(Math.random()*(tunes.length-1))];
+    while (random1 === huw) {
+      random1 = tunes[Math.ceil(Math.random()*(tunes.length-1))];
+    }
+    let random2 = tunes[Math.ceil(Math.random()*(tunes.length)-1)];
+    while (random2 === random1 || random2 === huw) { //while??
+      random2 = tunes[Math.ceil(Math.random()*(tunes.length)-1)];
+    }
+    let random3 = tunes[Math.ceil(Math.random()*(tunes.length)-1)];
+    while (random3 === random1 || random3 === random2 || random3 === huw) {
+      random3 = tunes[Math.ceil(Math.random()*(tunes.length)-1)];
+    }
+    randomrandom.push(huw);
+    randomrandom.push(random1);
+    randomrandom.push(random2);
+    randomrandom.push(random3);
 
     multipleanswers.push({
       audio: tunes[i],
@@ -51,12 +55,7 @@ $(() => {
     });
   }
   console.log(multipleanswers);
-  //
-  //
-  //   multipleanswers.audio.push(tunes[i]);
-  //   multipleanswers.options.push(correctanswer, randomanswer1, randomanswer2, randomanswer3);
-  // }
-  //
+
 
 
   function shuffle(array) {
@@ -70,6 +69,7 @@ $(() => {
     }
     return array;
   }
+
   // shuffle(multipleanswers);
   console.log('after!!');
   console.log(multipleanswers[0].audio);
@@ -77,6 +77,7 @@ $(() => {
 
   console.log($options.length);
   console.log(multipleanswers[0].options.length);
+
 
 //----------Showing answers after first click
   function updateOptions () {
@@ -93,28 +94,30 @@ $(() => {
     const chosenanswer = ($li.html());
     const correctanswer= (multipleanswers[0].audio).toString();
     if (correctanswer === chosenanswer) {
-      startingscore = startingscore+10;
+      startingscore = startingscore+ parseFloat(answerTimeRemaining);
       $score.text('Your score is:  ' + startingscore);
       $feedback.text('Correct!');
     } else {
       $feedback.text('Incorrect!');
       if (startingscore >=1) {
-        startingscore = startingscore-10;
+        startingscore = startingscore-5;
         $score.text('Your score is:  ' + startingscore);
 
       }
     }
-    $options.text('');
     multipleanswers.splice(0,1);
     updateOptions();
     console.log(multipleanswers[0].audio);
     console.log(multipleanswers[0].options);
+    clearQuestionTimer();
+    startQuestionTimer();
   }
 
   function hideStuff() {
     $name.hide();
     $go.hide();
   }
+
 
 //-------------Clock stuff ----------------------------
   function startRoundTimer(){
@@ -137,6 +140,12 @@ $(() => {
     }, 1000);
   }
 
+  function clearQuestionTimer() {
+    clearInterval(answerTimerId);
+    answerTimerId = null;
+    answerTimeRemaining =15;
+    $questiontimer.text(15);
+  }
 
 //////---------------- JQueeerrryyyyyyyiiinnnggg
 

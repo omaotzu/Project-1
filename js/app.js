@@ -21,21 +21,42 @@ $(() => {
   let answerTimerId = null;
 
 //-------------Hardcoded array--object----- array ----------------------------
-  const tunes = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  const multipleanswers =
-    [{ audio: 'a',
-      options: ['b', 'a', 'c', 'g']},
-    { audio: 'b',
-      options: ['f', 'j','h','b']},
-    { audio: 'c',
-      options: ['i','b','c','g']}];
+  const tunes = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w', 'x', 'y', 'z'];
+
+  shuffle(tunes);
 
 
 
-  console.log('before!!');
-  console.log(multipleanswers[0].audio);
-  console.log(multipleanswers[0].options);
 
+
+  const multipleanswers = [];
+    // [{audio: tunes[0],
+    //   options: [correctanswer, randomanswer1, randomanswer2, randomanswer3]},
+    // { audio: 'b',
+    //   options: ['f', 'j','h','b']},
+    // { audio: 'c',
+    //   options: ['i','b','c','g']}];
+
+
+  for (let i=0; i<tunes.length; i++) {
+    const correctanswer = tunes[i];
+    const randomanswer1 = tunes[Math.floor(Math.random()*tunes.length)];
+    const randomanswer2 = tunes[Math.floor(Math.random()*tunes.length)];
+    const randomanswer3 = tunes[Math.floor(Math.random()*tunes.length)];
+    const randomrandom = [correctanswer, randomanswer1, randomanswer2, randomanswer3];
+
+    multipleanswers.push({
+      audio: tunes[i],
+      options: shuffle(randomrandom)
+    });
+  }
+  console.log(multipleanswers);
+  //
+  //
+  //   multipleanswers.audio.push(tunes[i]);
+  //   multipleanswers.options.push(correctanswer, randomanswer1, randomanswer2, randomanswer3);
+  // }
+  //
 
 
   function shuffle(array) {
@@ -49,7 +70,7 @@ $(() => {
     }
     return array;
   }
-  shuffle(multipleanswers);
+  // shuffle(multipleanswers);
   console.log('after!!');
   console.log(multipleanswers[0].audio);
   console.log(multipleanswers[0].options);
@@ -94,6 +115,7 @@ $(() => {
     $name.hide();
     $go.hide();
   }
+
 //-------------Clock stuff ----------------------------
   function startRoundTimer(){
     roundTimerId = setInterval(() => {

@@ -2,8 +2,8 @@ $(() => {
 
 // -------------- Constants and variables ------------------------------
 
-  // const $instructions = $('.instructions');
-  // const $questions = $('.questions');
+  const $instructions = $('.instructions');
+  const $questions = $('.questions');
   const $name = $('.name');
   const $roundtimer = $('.rounds');
   const $questiontimer = $('.tunes');
@@ -16,22 +16,23 @@ $(() => {
 
   let $li = $('li');
   let startingscore = 0;
-  let roundTimeRemaining = 90;
+  let roundTimeRemaining = 60;
   let roundTimerId = null;
-  let answerTimeRemaining =15;
+  let answerTimeRemaining =7;
   let answerTimerId = null;
 
 //-------------Not!!!! Hardcoded array--object----- array ----------------------------
-  const tunes = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w', 'x', 'y', 'z'];
+  const tunes = ['Apologize','Forget You','Hero','It Wasnt Me','Whole Again','Yeah'];
 
 
-  shuffle(tunes);
+  // shuffle(tunes);
 
   const multipleanswers = [];
-
+  const songbits = [];
   for (let i=0; i<tunes.length; i++) {
+
     const randomrandom = [];
-    const huw = tunes[i];
+    const huw = (tunes[i]);
     let random1 = tunes[Math.ceil(Math.random()*(tunes.length-1))];
     while (random1 === huw) {
       random1 = tunes[Math.ceil(Math.random()*(tunes.length-1))];
@@ -44,19 +45,24 @@ $(() => {
     while (random3 === random1 || random3 === random2 || random3 === huw) {
       random3 = tunes[Math.ceil(Math.random()*(tunes.length)-1)];
     }
+    const indtune = document.createElement('audio');
+    const mp3files = (tunes[i]).replace(/ /g, '_');
+    indtune.src = (`tunes/${mp3files}.mp3`);
+    // new Audio(tunes[i].replace(/' '/g, '_').mp3);
+    // console.log((tunes[i]).replace(/ /g, '_'));
     randomrandom.push(huw);
     randomrandom.push(random1);
     randomrandom.push(random2);
     randomrandom.push(random3);
-
+    songbits.push(indtune);
     multipleanswers.push({
       audio: tunes[i],
       options: shuffle(randomrandom)
     });
   }
-  console.log(multipleanswers);
-
-
+  // console.log(multipleanswers);
+  console.log(songbits);
+  // console.log((tunes[i].replace(/' '/g, '_').mp3));
 
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -71,12 +77,12 @@ $(() => {
   }
 
   // shuffle(multipleanswers);
-  console.log('after!!');
-  console.log(multipleanswers[0].audio);
-  console.log(multipleanswers[0].options);
-
-  console.log($options.length);
-  console.log(multipleanswers[0].options.length);
+  // console.log('after!!');
+  // console.log(multipleanswers[0].audio);
+  // console.log(multipleanswers[0].options);
+  //
+  // console.log($options.length);
+  // console.log(multipleanswers[0].options.length);
 
 
 //----------Showing answers after first click
@@ -105,19 +111,31 @@ $(() => {
 
       }
     }
+    stoptunes();
     multipleanswers.splice(0,1);
+    songbits.splice(0,1);
     updateOptions();
     console.log(multipleanswers[0].audio);
     console.log(multipleanswers[0].options);
+    console.log(songbits[0]);
     clearQuestionTimer();
     startQuestionTimer();
+
   }
 
   function hideStuff() {
     $name.hide();
     $go.hide();
   }
-
+  // const $songbits = $('.songbits');
+  function playtunes () {
+    // for (let i=0; i<tunes.length; i++) {
+    songbits[0].play();
+  //   // }
+  }
+  function stoptunes () {
+    songbits[0].pause();
+  }
 
 //-------------Clock stuff ----------------------------
   function startRoundTimer(){
@@ -128,6 +146,7 @@ $(() => {
         clearInterval(roundTimerId);
       }
     }, 1000);
+
   }
 
   function startQuestionTimer(){
@@ -136,6 +155,13 @@ $(() => {
       $questiontimer.text(answerTimeRemaining);
       if (answerTimeRemaining <=0) {
         clearInterval(answerTimerId);
+        stoptunes();
+        multipleanswers.splice(0,1);
+        songbits.splice(0,1);
+        updateOptions();
+        playtunes();
+        clearQuestionTimer();
+        startQuestionTimer();
       }
     }, 1000);
   }
@@ -143,14 +169,16 @@ $(() => {
   function clearQuestionTimer() {
     clearInterval(answerTimerId);
     answerTimerId = null;
-    answerTimeRemaining =15;
-    $questiontimer.text(15);
+    answerTimeRemaining =7;
+    $questiontimer.text(7);
   }
 
 //////---------------- JQueeerrryyyyyyyiiinnnggg
 
   $answers.hide();
+  $go.on('click', playtunes);
   $options.on('click', checkAnswer);
+  $options.on('click', playtunes);
   $go.on('click', startRoundTimer);
   $go.on('click', startQuestionTimer);
   $go.on('click', hideStuff);

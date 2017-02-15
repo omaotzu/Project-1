@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Name That Tune!</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/animate.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
@@ -11,7 +12,11 @@
   </head>
   <body>
     <header>
-      <h1> <span class ="welcome animated bounceInUp">Welcome tooooo </span> <br><span class ="name animated bounceInUp">Name </span> <span class ="that animated bounceInUp">That </span> <span class ="tune animated bounceInUp">Tune!!!!! </span></h1>
+      <h1> <span class ="welcome animated bounceInUp">Welcome tooooo </span> <br>
+        <span class ="name animated bounceInUp">Name </span>
+        <span class ="that animated bounceInUp">That </span>
+        <span class ="tune animated bounceInUp">Tune!!!!! </span>
+      </h1>
     </header>
       <main class= "animated bounceInDown">
         <audio src="seffects/trumpbing.mp3" class = "bing"></audio>
@@ -21,11 +26,10 @@
           <div class="timer rounds">60</div>
         </aside>
         <section>
-          <div class="instructions">Select as many of the correct songs before the time runs out! The faster you guess the more points you get! You only have 7 seconds per song so <span class="quick">BE QUICK</span><br> <span class= "cool">Click HERE to hide instructions</span>
+          <div class="instructions clearfix:after">Select as many of the correct songs before the time runs out! The faster you guess the more points you get! You only have 7 seconds per song so <span class="quick">BE QUICK</span><br> <span class= "cool">Click HERE to hide instructions</span>
           </div>
           <div class="questions">
             <p class="ready">Are you ready?</p>
-              <!-- <input type="text" class = "name" placeholder="Please enter your name"> -->
             <button class="go">Go!</button>
             <div>
               <ul class="multiplechoice">
@@ -44,6 +48,6 @@
           <div class= "visualscore"></div>
         </aside>
       </main>
-    <footer>Big <span class="quick  ">&hearts;</span> Omao Tzu</footer>
+    <footer>Big<span class="quick">&hearts;</span> Omao Tzu</footer>
   </body>
 </html>

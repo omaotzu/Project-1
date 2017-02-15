@@ -11,14 +11,20 @@ header{
   color: white;
   text-align: center;
   height: 100px;
+  width: 100%;
+}
+
+header >h1 {
+  font-size: 42px;
 }
 
 main{
   background-image: url("../images/shootingstars.gif");
-  width: 960px;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
   border-radius: 50px;
+  border-bottom: 50px;
 }
 
 aside {
@@ -26,12 +32,13 @@ aside {
 }
 
 footer{
-  background-color: rgba(32,7,16,1);
+  background-color: rgba(0,0,0,0);
   color: white;
   text-align: center;
-  margin: 20px 0 0 0;
-  position: relative;
+  margin: 40px auto;
   height:75px;
+  width: 100%;
+  float: left;
 }
 
 .instructions {
@@ -70,7 +77,7 @@ footer{
   color: orange;
   width: 120px;
   height: 60px;
-  margin: 40px 40px 0 0;
+  margin: 40px 40px 40px 20px;
   border: 2px solid yellow;
   text-align: center;
   border-radius: 50px;
@@ -78,7 +85,6 @@ footer{
   float: left;
   position: relative;
   top: -420px;
-
 }
 
 .clearfix:after {
@@ -88,6 +94,10 @@ footer{
   content: " ";
   clear: both;
   height: 0;
+}
+
+.clocks {
+  margin: 40px 20px 40px 40px;
 }
 
 .timer {
@@ -106,12 +116,12 @@ footer{
   background-color: black;
 }
 
-.multiplechoice li{
+.choices {
   color: orange;
   background-color: black;
   border: 2px solid orange;
   border-radius: 5px;
-  margin: 20px 40px;
+  margin: 20px 40px 20px 40px;
   height: 50px;
   display: block;
   padding: 10px 0 10px 0;
@@ -128,12 +138,12 @@ button:focus {
   outline: 0;
 }
 
-aside .visualscore {
+.visualscore {
   float: right;
   display: inline-block;
   margin-right: 20px;
   margin-top: 40px;
-  height: 50px;
+  height: 20px;
   border-top: 2px solid #7A7A7A;
   border-left: 2px solid #7A7A7A;
   border-right: 2px solid #7A7A7A;
@@ -144,10 +154,6 @@ aside .visualscore {
   top: -420px;
   border-radius: 5px;
 }
-
-/*.welcome .name .that .tune {
-  display: none;
-}*/
 
 .bounceInDown {
   animation-duration: 15;
@@ -178,19 +184,90 @@ aside .visualscore {
   color: red;
 }
 
+.replay {
 
-.goagain {
-  background-color: red;
 }
-/*
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: verticle) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
+
+.gameover > h2{
+  color: red;
+}
+
+.gameover >p {
+  color: yellow;
+}
+
+
+@media only screen and (max-width: 640px) {
+
+  header{
+    font-size: 12px;
   }
-}*/
+
+  .instructions {
+    display: none;
+  }
+
+  .clocks{
+    margin-right: 6px;
+  }
+
+  .timer {
+    height: 23px;
+    width: 23px;
+    border: 2px solid red;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 23px;
+
+  }
+
+  .ready {
+    font-size: 12px;
+  }
+
+  .score{
+    display: none;
+  }
+
+  .visualscore {
+    width:33px;
+    margin-right: 6px;
+    margin-top: 12px;
+    top: -320px;
+  }
+
+  .go {
+    width: 40px;
+    background-color: white;
+  }
+
+  .questions{
+    height: 300px;
+    margin: 12px auto;
+  }
+
+  .choices{
+    border: 1px solid orange;
+    margin: 6px 12px;
+    height: 16px;
+    padding: 3px 0 3px 0;
+    width: 80%;
+    font-size: 12px;
+  }
+
+  .multiplechoice li:first-child{
+    margin-top: 20px;
+  }
+  .gameover > h2{
+    font-size: 14px;
+  }
+
+  .gameover >p {
+    font-size: 12px;
+  }
+
+  .replay {
+    width: 60px;
+    background-color: white;
+  }
+}

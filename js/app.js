@@ -13,7 +13,7 @@ $(() => {
   const $score = $('.score');
   const $feedback =$('.feedback');
   const $visualscore = $('.visualscore');
-  const $finalstuff= $('.gameover');
+  const $replay= $('.replay');
 
   // const $welcome = $('.welcome');
   // const $name = $('.name');
@@ -35,7 +35,7 @@ $(() => {
   function play() {
     const tunes = ['American Boy','Apologize','Bad Romance','Dilemma','Firework','Forget You','Gold Digger','Hero','Hey Ya', 'Hips Dont Lie', 'I Dont Feel Like Dancing', 'In For The Kill', 'Independent Woman', 'Is This The Way To Amarillo','It Wasnt Me','Love The Way You Lie', 'Low', 'Moves Like Jagger', 'Poker Face', 'Pure And Simple','Sex On Fire','Sexy And I Know It', 'Single Ladies', 'Someone Like You', 'Use Somebody', 'Viva La Vida', 'When Love Takes Over', 'Where Is The Love', 'Whole Again','Yeah'];
 
-
+    // let currenttunes = tunes;
     shuffle(tunes);
 
 
@@ -187,30 +187,29 @@ $(() => {
       const $gameover = document.createElement('div');
       const $gameovertext = document.createElement('h2');
       const $yourscore = document.createElement('p');
-      const $playagain = document.createElement('button');
       $gameover.classList.add('gameover');
-      $playagain.classList.add('replay');
       $gameovertext.textContent= 'CONGRATULATIONS';
       $yourscore.textContent = ('Your score was     ' + startingscore);
-      $playagain.textContent = 'Replay?';
       $questions.append($gameover);
       $gameover.append($gameovertext);
       $gameover.append($yourscore);
-      $gameover.append($playagain);
+      $replay.show();
     }
-    const $replay = $('.replay');
+    // const $finalstuff= $('.gameover');
 
     function startagain () {
       console.log('clicked');
-      // $finalstuff.remove();
-      // $li = $('li');
-      // startingscore = 0;
-      // roundTimeRemaining = 60;
-      // roundTimerId = null;
-      // answerTimeRemaining =7;
-      // answerTimerId = null;
-      // $go.show();
-      // $ready.show();
+      $('.gameover').remove();
+      $li = $('li');
+      startingscore = 0;
+      roundTimeRemaining = 5;
+      roundTimerId = null;
+      answerTimeRemaining =7;
+      answerTimerId = null;
+      $go.show();
+      $ready.show();
+      $replay.hide();
+      $roundtimer.text(60);
     }
 
     function instructionsliding() {
@@ -218,7 +217,7 @@ $(() => {
     }
 
   //////---------------- JQueeerrryyyyyyyiiinnnggg
-
+    $replay.hide();
     $answers.hide();
     $instructions.on('click', instructionsliding);
     $go.on('click', playtunes);
@@ -228,6 +227,7 @@ $(() => {
     $go.on('click', startQuestionTimer);
     $go.on('click', hideStuff);
     $go.on('click', updateOptions);
+    // $go.on('click', startagain);
     $replay.on('click', startagain);
   }
   play();

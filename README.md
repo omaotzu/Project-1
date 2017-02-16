@@ -8,7 +8,7 @@ Think of the intros round from never mind the buzzcocks and you're right on the 
 
 Several musical categories available for selection in an all out race to see if you really do know your music or not!
 
-
+[Play it here!](https://cryptic-hamlet-93856.herokuapp.com/)
 
 Rules
 

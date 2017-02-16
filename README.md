@@ -12,14 +12,16 @@ Several musical categories available for selection in an all out race to see if 
 
 Rules
 
-After category selection you will have 60 seconds to guess as many songs within the category as possible given only a maximum of 7 seconds per song. The faster you guess them the more points you get!
+After category selection you will have 60 seconds to guess as many songs within the category as possible given only a maximum of 7 seconds per song. 
 
-http://imgur.com/MvEmPlu
+![](./images/ntt_categories.png)
+
 
 Approach / How it works
 
-Fastest to the guess is the aim of the game. Select the correct song from one of four.
+Fastest to the guess is the aim of the game. Select the correct song from one of four. The faster you guess them the more points you get! You lose points for incorrect guesses.
 
+![](./images/ntt_choose.png)
 
 There are sounds that are triggered upon:
 
@@ -34,6 +36,9 @@ Animation was created using the Animate.css stylesheet and with a tiny bit of ja
 All sounds both cut and uploaded myself from files I own with the exception of 'Trump's Bing' which was  taken from youtube and the applause which was taken from soundbible.com.
 
 The Google Web Font 'Architects Daughter', 'Dancing Script' & 'Lobster Two' were used to style the game as well as several gifs sourced from gify.com
+
+![](./images/again.png)
+
 
 
 Problems & Challenges

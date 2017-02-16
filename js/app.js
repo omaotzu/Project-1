@@ -1,3 +1,4 @@
+
 // -------------- Constants/variables ------------------------------
 function play() {
   const $instructions = $('.instructions');
@@ -16,7 +17,7 @@ function play() {
   const $bong = $('.bong').get(0);
   let $li = $('li');
   let startingscore = 0;
-  let roundTimeRemaining =5;
+  let roundTimeRemaining =60;
   let roundTimerId = null;
   let answerTimeRemaining =7;
   let answerTimerId = null;

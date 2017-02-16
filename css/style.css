@@ -4,26 +4,26 @@
 
 body{
   background-image: url("../images/shootingstars.gif");
+  max-width: 100%;
 }
 
 header{
   color: white;
   text-align: center;
+  margin: 0 auto;
   height: 80px;
-  width: 100%;
+
 }
 
 header >h1 {
-  margin-top: 20px;
   font-size: 42px;
+  margin-top: 20px;
+  font-family: 'Dancing Script', cursive;
 }
 
 main{
-  background-image: url("../images/shootingstars.gif");
-  width: 100%;
   text-align: center;
   margin: 0 auto;
-  border-radius: 50px;
   border-bottom: 50px;
 }
 
@@ -35,10 +35,12 @@ footer{
   background-color: rgba(0,0,0,0);
   color: white;
   text-align: center;
-  margin: 40px auto;
+  margin: 0 auto;
   height:75px;
-  width: 100%;
-  float: left;
+  float: right;
+}
+footer >p {
+  margin-top: 20px;
 }
 
 .instructions {
@@ -55,7 +57,7 @@ footer{
   background-color: rgba(32,7,16,0.7);
   border: 2px solid #7A7A7A;
   height: 400px;
-  width: 70%;
+  width: 600px;
   margin: 20px auto;
   border-radius: 50px;
   color: white;
@@ -64,14 +66,27 @@ footer{
 }
 
 .feedback{
-  background-color: white;
+  background-color: black;
   border: 2px solid #7A7A7A;
   width: 200px;
   height: 40px;
   margin: 0 auto;
-  border-radius: 50px;
+  border-radius: 20px;
+  padding: 5px;
+  color: orange;
+  font-weight: bold;
+  font-family: 'Architects Daughter', cursive;
 }
 
+.win {
+  background-color: #1F6918;
+  color: white;
+}
+
+.lose {
+  background-color: #B5042D;
+  color: white;
+}
 .score{
   background-color: rgba(32,7,16,0.7);
   color: orange;
@@ -84,7 +99,7 @@ footer{
   padding: 15px;
   float: left;
   position: relative;
-  top: -420px;
+  /*top: -420px;*/
 }
 
 .clearfix:after {
@@ -116,21 +131,41 @@ footer{
   background-color: black;
 }
 
-.pleaseselect {
-  margin-bottom: 100px;
+.go {
+  border-radius: 5px;
+  background-color: black;
+  color: #B5042D;
+  margin-top: 30px;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 24px;
+  border: 2px solid orange;
+  cursor: pointer;
 }
+.go:hover{
+  background-color: white;
+}
+
+.pleaseselect{
+  font-family: 'Lobster Two', cursive;
+}
+.categories {
+  margin-top: 100px;
+}
+
 .cats {
   background-image: url("../images/musicalnote.gif");
   background-size: contain;
   display: inline;
-  width: 50%;
   border: 2px solid orange;
   height: 70px;
   border-radius: 5px;
   margin: 0 20px;
+  margin-top: 100px;
   padding: 20px;
   cursor: pointer;
-  color: #B5042D;
+  color: #DE6A0B;
+  font-family: 'Architects Daughter', cursive;
 }
 
 .categories li:nth-child(2) {
@@ -152,6 +187,7 @@ footer{
   width: 80%;
   cursor: pointer;
   text-align: center;
+  font-family: 'Architects Daughter', cursive;
 }
 
 .multiplechoice li:first-child{
@@ -180,28 +216,29 @@ button:focus {
 }
 
 .bounceInDown {
-  animation-duration: 15;
-  animation-delay: 10s;
+  animation-duration: 5;
+  animation-delay: 8s;
 }
 .bounceInUp.welcome {
-  animation-duration: 15s;
+  animation-duration: 5s;
   animation-delay: 2s;
 }
 .bounceInUp.name {
-  animation-duration: 15s;
-  animation-delay: 5s;
+  animation-duration: 5s;
+  animation-delay: 4s;
 }
 .bounceInUp.that {
-  animation-duration: 15s;
-  animation-delay: 6s;
+  animation-duration: 5s;
+  animation-delay: 5s;
 }
 .bounceInUp.tune {
-  animation-duration: 15s;
-  animation-delay: 7s;
+  animation-duration: 5s;
+  animation-delay: 6s;
 }
 
 .ready {
   margin: 0;
+  font-family: 'Lobster Two', cursive;
 }
 
 .quick {
@@ -209,17 +246,31 @@ button:focus {
 }
 
 .replay {
-
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: black;
+  color: #B5042D;
+  margin-top: 30px;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 24px;
+  border: 2px solid orange;
+  cursor: pointer;
 }
+
+.replay:hover {
+  background-color: white;
+}
+
 
 .gameover > h2{
   color: red;
+  margin-bottom: 20px;
 }
 
 .gameover >p {
   color: yellow;
 }
-
 
 @media only screen and (max-width: 640px) {
 
@@ -233,6 +284,7 @@ button:focus {
 
   .clocks{
     margin-right: 6px;
+    top: -25px;
   }
 
   .timer {
@@ -261,13 +313,13 @@ button:focus {
   }
 
   .go {
-    width: 40px;
     background-color: white;
   }
 
   .questions{
     height: 200px;
     margin: 12px auto;
+    width: 230px;
   }
 
   .choices{
@@ -294,12 +346,17 @@ button:focus {
   }
 
   .replay {
-    width: 60px;
-    background-color: white;
+    /*width: 60px;
+    background-color: white;*/
   }
   .pleaseselect {
-    margin-bottom: 30px;
+    margin-top:10px;
+    margin-left:auto;
+    margin-right:auto;
     font-size: 16px;
+  }
+  .categories {
+    margin-top: 10px;
   }
   .cats {
     background-image: url();

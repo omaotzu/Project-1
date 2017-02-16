@@ -19,13 +19,13 @@ ntt.pickCategory = function pickCategory(e) {
   this.chosenCategory = (this.$li.html()).replace(/ /g, '').toLowerCase();
 
   if (this.chosenCategory === 'pop') {
-    this.currenttunes = this.poptunes;
+    this.currenttunes = this.shuffle(this.poptunes);
   }else if (this.chosenCategory === 'rock') {
-    this.currenttunes = this.rocktunes;
+    this.currenttunes = this.shuffle(this.rocktunes);
   }else if (this.chosenCategory === 'hiphop'){
-    this.currenttunes = this.hiphoptunes;
+    this.currenttunes = this.shuffle(this.hiphoptunes);
   }else if (this.chosenCategory === 'all'){
-    this.currenttunes = this.alltunes;
+    this.currenttunes = this.shuffle(this.alltunes);
   }
   this.$cats.hide();
   this.$selector.hide();
@@ -36,12 +36,8 @@ ntt.pickCategory = function pickCategory(e) {
 ntt.makingGame = function makingGame() {
   for (let i=0; i<this.currenttunes.length; i++) {
     this.randomrandom = [];
-    this.shuffle(this.currenttunes);
     this.huw = (this.currenttunes[i]);
 
-    // shuffle the array
-    // splice first 3 elements
-    // while selectedAnswers.includes(huw) do it all again...
     this.random1 = this.currenttunes[Math.ceil(Math.random()*(this.currenttunes.length-1))];
     while (this.random1 === this.huw) {
       this.random1 = this.currenttunes[Math.ceil(Math.random()*(this.currenttunes.length-1))];
@@ -55,7 +51,7 @@ ntt.makingGame = function makingGame() {
       this.random3 = this.currenttunes[Math.ceil(Math.random()*(this.currenttunes.length)-1)];
     }
     this.indtune = document.createElement('audio');
-    this.mp3files = (this.currenttunes[i]).replace(/ /g, '_');
+    this.mp3files = this.huw.replace(/ /g, '_');
     this.indtune.src = (`tunes/${this.mp3files}.mp3`);
 
     this.randomrandom.push(this.huw);
@@ -64,11 +60,14 @@ ntt.makingGame = function makingGame() {
     this.randomrandom.push(this.random3);
     this.songbits.push(this.indtune);
     this.multipleanswers.push({
-      audio: this.currenttunes[i],
+      audio: this.huw,
       options: this.shuffle(this.randomrandom)
     });
+    // console.log(this.multipleanswers[i].audio);
+    // console.log(this.multipleanswers[i].options);
   }
   this.$options.show();
+
 };
 
 //----------Updating multiplechoice------------------
@@ -91,8 +90,12 @@ ntt.checkAnswer = function checkAnswer(e) {
     this.$score.text('Your score is:  ' + this.startingscore);
     this.$feedback.text('Correct!');
     this.visScore();
+    this.$feedback.removeClass('lose');
+    this.$feedback.addClass('win');
   } else {
     this.$feedback.text('Incorrect!');
+    this.$feedback.removeClass('win');
+    this.$feedback.addClass('lose');
     if (this.startingscore >=1) {
       this.startingscore = this.startingscore-10;
       this.$score.text('Your score is:  ' + this.startingscore);
@@ -127,6 +130,7 @@ ntt.startRoundTimer = function startRoundTimer(){
       this.clearQuestionTimer();
       this.stopTunes();
       this.endGame();
+      this.$clap.play();
     }
   }, 1000);
 };
@@ -191,6 +195,9 @@ ntt.startAgain =function startAgain() {
   this.multipleanswers = [];
   this.songbits = [];
   this.$visualscore.css({'height': '20'});
+  this.$feedback.text('');
+  this.$feedback.removeClass('win');
+  this.$feedback.removeClass('lose');
 };
 
 ntt.instructionSliding= function instructionSliding() {
@@ -212,6 +219,7 @@ ntt.play = function() {
   this.$visualscore = $('.visualscore');
   this.$replay= $('.replay');
   this.$bing = $('.bing').get(0);
+  this.$clap=$('.clap').get(0);
   this.$li = $('li');
   this.$cats= $('.cats');
   this.$selector= $('.pleaseselect');
@@ -223,7 +231,12 @@ ntt.play = function() {
   this.multipleanswers = [];
   this.songbits = [];
   this.currenttunes = [];
-
+  // this.shufflecheck = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+  // console.log('before');
+  // console.log(this.shufflecheck);
+  // this.shuffle(this.shufflecheck);
+  // console.log('after');
+  // console.log(this.shufflecheck);
   this.$go.hide();
   this.$ready.hide();
   this.$replay.hide();

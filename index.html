@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/animate.css">
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Dancing+Script|Lobster+Two" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
     <script src="js/tunes.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
@@ -21,9 +22,13 @@
     </header>
       <main class= "animated bounceInDown">
         <audio src="seffects/trumpbing.mp3" class = "bing"></audio>
+        <audio src="seffects/applause.mp3" class = "clap"></audio>
         <aside class="clocks">
           <div class="timer tunes">7</div>
           <div class="timer rounds">60</div>
+        </aside>
+        <aside class="scorecontainer">
+          <div class="score">Your score is:  0</div>
         </aside>
         <section>
           <div class="instructions clearfix:after">Select as many of the correct songs before the time runs out! The faster you guess the more points you get! You only have 7 seconds per song so <span class="quick">BE QUICK</span><br> <span class= "cool">Click HERE to hide instructions</span>
@@ -31,8 +36,8 @@
           <div class="questions">
             <p class="ready">Are you ready?</p>
             <button class="go">Go!</button>
-            <div>
-              <h2 class="pleaseselect"> Please pick a category</h2>
+            <div class="pleaseselect">
+              <h2>Please pick a category</h2>
               <ul class = "categories">
                 <li class ="cats">Pop</li>
                 <li class ="cats">Rock</li>
@@ -53,10 +58,11 @@
           <div class="feedback"></div>
         </section>
         <aside>
-          <div class="score">Your score is:  0</div>
           <div class= "visualscore"></div>
         </aside>
       </main>
-    <footer>Big<span class="quick">&hearts;</span> Omao Tzu</footer>
+    <footer>
+      <p>Big<span class="quick">&hearts;</span> Omao Tzu</p>
+      </footer>
   </body>
 </html>

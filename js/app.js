@@ -1,5 +1,6 @@
 var ntt = ntt || {};
 //---------------Shuffle --------------------------
+
 ntt.shuffle = function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
   while (0 !== currentIndex) {
@@ -12,15 +13,34 @@ ntt.shuffle = function shuffle(array) {
   return array;
 };
 
+///----------------picking category for tunes -----------------------------------------
+ntt.pickCategory = function pickCategory(e) {
+  this.$li = $(e.currentTarget);
+  this.chosenCategory = (this.$li.html()).replace(/ /g, '').toLowerCase();
+
+  if (this.chosenCategory === 'pop') {
+    this.currenttunes = this.poptunes;
+  }else if (this.chosenCategory === 'rock') {
+    this.currenttunes = this.rocktunes;
+  }else if (this.chosenCategory === 'hiphop'){
+    this.currenttunes = this.hiphoptunes;
+  }else if (this.chosenCategory === 'all'){
+    this.currenttunes = this.alltunes;
+  }
+  this.$cats.hide();
+  this.$selector.hide();
+  this.$go.show();
+  this.$ready.show();
+};
 //------------Creating object of both correct answer and wrong answers----------------
-
-
 ntt.makingGame = function makingGame() {
   for (let i=0; i<this.currenttunes.length; i++) {
     this.randomrandom = [];
+    this.shuffle(this.currenttunes);
     this.huw = (this.currenttunes[i]);
+
     // shuffle the array
-    // spice first 3 elements
+    // splice first 3 elements
     // while selectedAnswers.includes(huw) do it all again...
     this.random1 = this.currenttunes[Math.ceil(Math.random()*(this.currenttunes.length-1))];
     while (this.random1 === this.huw) {
@@ -48,6 +68,7 @@ ntt.makingGame = function makingGame() {
       options: this.shuffle(this.randomrandom)
     });
   }
+  this.$options.show();
 };
 
 //----------Updating multiplechoice------------------
@@ -72,7 +93,6 @@ ntt.checkAnswer = function checkAnswer(e) {
     this.visScore();
   } else {
     this.$feedback.text('Incorrect!');
-    this.$bong.play();
     if (this.startingscore >=1) {
       this.startingscore = this.startingscore-10;
       this.$score.text('Your score is:  ' + this.startingscore);
@@ -104,7 +124,6 @@ ntt.startRoundTimer = function startRoundTimer(){
     this.$roundtimer.text(this.roundTimeRemaining);
     if (this.roundTimeRemaining <=0) {
       clearInterval(this.roundTimerId);
-      this.$answers.hide();
       this.clearQuestionTimer();
       this.stopTunes();
       this.endGame();
@@ -118,7 +137,7 @@ ntt.startQuestionTimer= function startQuestionTimer(){
     this.$questiontimer.text(this.answerTimeRemaining);
     if ((this.answerTimeRemaining <=-1)&&(this.roundTimeRemaining>0)){
       clearInterval(this.answerTimerId);
-      this.stoptunes();
+      this.stopTunes();
       this.multipleanswers.splice(0,1);
       this.songbits.splice(0,1);
       this.updateOptions();
@@ -141,6 +160,7 @@ ntt.visScore = function visScore() {
 };
 //-----------end game ---------------------------------------
 ntt.endGame = function endGame() {
+  this.$options.hide();
   this.$gameover = document.createElement('div');
   this.$gameovertext = document.createElement('h2');
   this.$yourscore = document.createElement('p');
@@ -162,16 +182,14 @@ ntt.startAgain =function startAgain() {
   this.roundTimerId = null;
   this.answerTimeRemaining =7;
   this.answerTimerId = null;
-  this.$go.show();
-  this.$ready.show();
+  this.$selector.show();
+  this.$cats.show();
   this.$replay.hide();
   this.$roundtimer.text(60);
   this.$score.text('Your score is:  0');
-  this.currenttunes = this.tunes;
-  this.shuffle(this.currenttunes);
+  this.currenttunes = [];
   this.multipleanswers = [];
   this.songbits = [];
-  this.makingGame();
   this.$visualscore.css({'height': '20'});
 };
 
@@ -187,27 +205,32 @@ ntt.play = function() {
   this.$roundtimer = $('.rounds');
   this.$questiontimer = $('.tunes');
   this.$go = $('.go');
-  this.$answers = $('ul');
+  this.$answers = $('.multipchoice');
   this.$options = $('.choices');
   this.$score = $('.score');
   this.$feedback =$('.feedback');
   this.$visualscore = $('.visualscore');
   this.$replay= $('.replay');
   this.$bing = $('.bing').get(0);
-  this.$bong = $('.bong').get(0);
   this.$li = $('li');
+  this.$cats= $('.cats');
+  this.$selector= $('.pleaseselect');
   this.startingscore = 0;
   this.roundTimeRemaining =60;
   this.roundTimerId = null;
   this.answerTimeRemaining =7;
   this.answerTimerId = null;
-  this.currenttunes = this.tunes;
-  this.shuffle(this.currenttunes);
   this.multipleanswers = [];
   this.songbits = [];
+  this.currenttunes = [];
+
+  this.$go.hide();
+  this.$ready.hide();
   this.$replay.hide();
-  this.$answers.hide();
+  this.$options.hide();
+
   this.$instructions.on('click', this.instructionSliding.bind(this));
+  this.$cats.on('click', this.pickCategory.bind(this));
   this.$go.on('click', this.makingGame.bind(this));
   this.$go.on('click', this.playTunes.bind(this));
   this.$options.on('click', this.checkAnswer.bind(this));

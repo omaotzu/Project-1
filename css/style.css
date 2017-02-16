@@ -9,11 +9,12 @@ body{
 header{
   color: white;
   text-align: center;
-  height: 100px;
+  height: 80px;
   width: 100%;
 }
 
 header >h1 {
+  margin-top: 20px;
   font-size: 42px;
 }
 
@@ -113,6 +114,27 @@ footer{
   margin: 0 auto;
   float: right;
   background-color: black;
+}
+
+.pleaseselect {
+  margin-bottom: 100px;
+}
+.cats {
+  background-image: url("../images/musicalnote.gif");
+  background-size: contain;
+  display: inline;
+  width: 50%;
+  border: 2px solid orange;
+  height: 70px;
+  border-radius: 5px;
+  margin: 0 20px;
+  padding: 20px;
+  cursor: pointer;
+  color: #B5042D;
+}
+
+.categories li:nth-child(2) {
+  padding-right: 8px;
 }
 
 .choices {
@@ -274,5 +296,31 @@ button:focus {
   .replay {
     width: 60px;
     background-color: white;
+  }
+  .pleaseselect {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  .cats {
+    background-image: url();
+    background-color: black;
+    color: orange;
+    display: block;
+    width: 30%;
+    border: 1px solid orange;
+    height: 23px;
+    border-radius: 5px;
+    margin-top: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 6px;
+    cursor: pointer;
+    color: #3790AD;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .categories li:nth-child(2) {
+    padding-right: 8px;
   }
 }

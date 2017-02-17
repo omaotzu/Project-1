@@ -1,6 +1,6 @@
 # Project-1
 
-Name That Tune!!!
+## Name That Tune!!!
 
 GA WDI London - Project 1
 
@@ -10,14 +10,14 @@ Several musical categories available for selection in an all out race to see if 
 
 [Play it here!](https://cryptic-hamlet-93856.herokuapp.com/)
 
-Rules
+### Rules
 
 After category selection you will have 60 seconds to guess as many songs within the category as possible given only a maximum of 7 seconds per song. 
 
 ![](./images/ntt_categories.png)
 
 
-Approach / How it works
+### Approach / How it works
 
 Fastest to the guess is the aim of the game. Select the correct song from one of four. The faster you guess them the more points you get! You lose points for incorrect guesses.
 
@@ -41,6 +41,6 @@ The Google Web Font 'Architects Daughter', 'Dancing Script' & 'Lobster Two' were
 
 
 
-Problems & Challenges
+### Problems & Challenges
 
 Not being very good at managing complex data type and objects in particular it took me some time to be able to both create the objects required in order to provide the multiplechoice answers coupled with the audio and the correct answers. My CSS was fiddly but I believe I got there in the end although greater responsiveness would have been ideal. My first project and definitely had a bit of post project decision regret which let me down in my ability to focus and get on with the task at hand which is a huge lesson I will learn for the future.

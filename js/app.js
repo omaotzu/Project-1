@@ -85,7 +85,6 @@ ntt.checkAnswer = function checkAnswer(e) {
   this.chosenanswer = (this.$li.html());
   this.correctanswer= (this.multipleanswers[0].audio).toString();
   if (this.correctanswer === this.chosenanswer) {
-    this.$bing.play();
     this.startingscore = this.startingscore+ parseFloat((this.answerTimeRemaining)*10);
     this.$score.text('Your score is:  ' + this.startingscore);
     this.$feedback.text('Correct!');
@@ -218,7 +217,6 @@ ntt.play = function() {
   this.$feedback =$('.feedback');
   this.$visualscore = $('.visualscore');
   this.$replay= $('.replay');
-  this.$bing = $('.bing').get(0);
   this.$clap=$('.clap').get(0);
   this.$li = $('li');
   this.$cats= $('.cats');
@@ -231,12 +229,6 @@ ntt.play = function() {
   this.multipleanswers = [];
   this.songbits = [];
   this.currenttunes = [];
-  // this.shufflecheck = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
-  // console.log('before');
-  // console.log(this.shufflecheck);
-  // this.shuffle(this.shufflecheck);
-  // console.log('after');
-  // console.log(this.shufflecheck);
   this.$go.hide();
   this.$ready.hide();
   this.$replay.hide();

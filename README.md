@@ -29,6 +29,7 @@ A correct guess.
 Every new song!
 Game over.
 
+##Technologies Used
 
 HTML 5, CSS and jQuery were used to create this game.
 Animation was created using the Animate.css stylesheet and with a tiny bit of javascript.
